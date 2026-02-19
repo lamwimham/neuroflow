@@ -37,6 +37,8 @@ async-trait = "0.1"
 rand = "0.8"
 libc = "0.2"  # For resource limits
 futures = "0.3"
+nix = { version = "0.27", features = ["sched", "mount", "user"] }
+# caps = "0.5"  # Temporarily disabled due to compilation issues
 # Additional dependencies for Phase 2
 notify = "6.1"
 ndarray = "0.15"
