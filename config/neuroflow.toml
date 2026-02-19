@@ -1,0 +1,63 @@
+environment = "development"
+
+[server]
+host = "127.0.0.1"
+port = 8080
+max_connections = 100
+request_timeout = 30
+idle_connection_timeout = 60
+
+[sandbox]
+max_instances = 10
+memory_limit = 536870912  # 512MB
+cpu_limit = 1.0
+timeout = 30
+allowed_hosts = ["localhost", "127.0.0.1"]
+allowed_paths = ["/tmp"]
+
+[observability]
+metrics_enabled = true
+traces_enabled = true
+logs_level = "INFO"
+export_interval = 15
+endpoint = "http://localhost:4317"
+
+[security]
+  [security.rate_limit]
+  requests_per_minute = 1000
+  burst_size = 100
+
+  [security.pii_detection]
+  enabled = true
+  confidence_threshold = 0.8
+
+[routing]
+semantic_enabled = true
+vector_dimension = 768
+similarity_threshold = 0.7
+max_candidates = 10
+
+[grpc]
+enabled = true
+host = "127.0.0.1"
+port = 50051
+max_message_size = 4194304  # 4MB
+concurrency_limit = 100
+
+[hot_reload]
+enabled = true
+watch_dirs = ["./config", "./plugins"]
+polling_interval = 1000
+backup_enabled = true
+
+[database]
+url = "sqlite::memory:"
+max_connections = 20
+min_connections = 5
+connection_timeout = 30
+
+[cache]
+enabled = true
+ttl_seconds = 300
+max_entries = 1000
+eviction_policy = "lru"

@@ -1,0 +1,4 @@
+# Basic Template Dependencies
+neuroflow-sdk>=0.4.1
+openai>=1.0.0
+pyyaml>=6.0

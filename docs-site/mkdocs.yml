@@ -1,0 +1,163 @@
+site_name: NeuroFlow
+site_description: AI Agent 运行时框架 - 让 AI Agent 开发更简单、更安全、更高效
+site_url: https://neuroflow.ai
+site_author: NeuroFlow Team
+
+repo_name: neuroflow/neuroflow
+repo_url: https://github.com/neuroflow/neuroflow
+
+copyright: Copyright &copy; 2024 NeuroFlow Team
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.code.select
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.ico
+  logo: assets/logo.svg
+
+docs_dir: docs
+site_dir: site
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      lang:
+        - zh
+        - en
+  - minify:
+      minify_html: true
+
+extra:
+  version:
+    provider: mike
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/neuroflow/neuroflow
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/neuroflow
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/neuroflow_ai
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Uninstall: getting-started/uninstall.md
+    - Quickstart: getting-started/quickstart.md
+    - First Agent: getting-started/first-agent.md
+    - Next Steps: getting-started/next-steps.md
+  - Concepts:
+    - Architecture: concepts/architecture.md
+    - Agents: concepts/agents.md
+    - Tools: concepts/tools.md
+    - Sandbox: concepts/sandbox.md
+    - Configuration: concepts/configuration.md
+  - Guides:
+    - CLI Usage: guides/cli.md
+    - Building Agents: guides/building-agents.md
+    - Developing Tools: guides/developing-tools.md
+    - Using MCP: guides/using-mcp.md
+    - Debugging: guides/debugging.md
+    - Testing: guides/testing.md
+    - Deployment: guides/deployment.md
+  - API Reference:
+    - Python SDK: api-reference/python/index.md
+    - Rust Kernel: api-reference/rust/index.md
+  - Best Practices:
+    - Agent Design: best-practices/agent-design.md
+    - Performance: best-practices/performance.md
+    - Security: best-practices/security.md
+    - Code Organization: best-practices/code-organization.md
+  - Troubleshooting:
+    - FAQ: troubleshooting/faq.md
+    - Installation: troubleshooting/installation.md
+    - Runtime Errors: troubleshooting/runtime.md
+    - Performance Issues: troubleshooting/performance.md
+  - Examples:
+    - Basic Examples: examples/basic.md
+    - Advanced Examples: examples/advanced.md
+    - Production Examples: examples/production.md

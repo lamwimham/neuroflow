@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: neuroflow-sdk
+Version: 0.3.0
+Summary: NeuroFlow SDK for building AI agents
+Author: NeuroFlow Team
+Author-email: team@neuroflow.ai
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.9
+Requires-Dist: click>=8.0.0
+Requires-Dist: asyncio
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: grpcio>=1.50.0
+Requires-Dist: protobuf>=4.0.0
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: uvicorn>=0.20.0
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: openai>=1.0.0
+Requires-Dist: anthropic>=0.18.0
+Requires-Dist: opentelemetry-api>=1.18.0
+Requires-Dist: opentelemetry-sdk>=1.18.0
+Requires-Dist: opentelemetry-exporter-otlp-proto-http>=1.18.0
+Requires-Dist: opentelemetry-instrumentation-requests>=0.39b0
+Requires-Dist: opentelemetry-instrumentation-logging>=0.39b0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.20.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: click-completion>=0.5.0; extra == "dev"
+Provides-Extra: cli
+Requires-Dist: click>=8.0.0; extra == "cli"
+Requires-Dist: click-completion>=0.5.0; extra == "cli"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

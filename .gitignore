@@ -1,0 +1,147 @@
+# 编译产物
+target/
+**/target/
+
+# Python虚拟环境和包
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.ENV
+.venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.DS_Store
+.pytest_cache/
+.hypothesis/
+
+# Rust相关
+Cargo.lock
+**/Cargo.lock
+**/Cargo.toml.orig
+
+# Node相关（如果存在Node.js插件）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE相关
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+.atom/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+.directory
+.Trashes
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+
+# 环境变量文件
+.env
+.env.local
+.env.dev
+.env.prod
+.env.testing
+.env.staging
+
+# 本地配置
+config/local.json
+config/production.json
+
+# 测试和构建产物
+**/test-results/
+**/reports/
+**/dist/
+**/build/
+**/out/
+**/output/
+
+# 日志文件
+*.log
+logs/
+**/logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 临时文件
+tmp/
+temp/
+**/tmp/
+**/temp/
+
+# Secrets and sensitive data
+secrets/
+**/secrets/
+*.key
+*.pem
+*.crt
+*.cert
+**/private/
+**/credentials.json
+**/config/secrets.*
+
+# Database
+*.db
+*.db-journal
+
+# CI/CD
+.circleci/
+.github/
+.gitlab/
+
+# Docker
+**/docker-compose*.yml
+.docker/
+
+# Local development
+local/
+**/local/
+**/development/
+**/dev/
+
+# Backup files
+*~
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+
+# IDE specific
+.vscode/settings.json
+.idea/*
+!.idea/vcs.xml
+!.idea/modules.xml
+!.idea/workspace.xml
+!.idea/runConfigurations/

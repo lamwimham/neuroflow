@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package neuroflow.runtime.v1;
+
+// 上下文信息
+message Context {
+  string trace_id = 1;
+  string user_id = 2;
+  map<string, string> metadata = 3;
+}
+
+// 执行指标
+message ExecutionMetrics {
+  uint64 execution_time_ms = 1;
+  uint64 memory_usage_bytes = 2;
+  uint64 cpu_time_ms = 3;
+}
+
+// 内核 -> 沙箱：调用请求
+message InvokeRequest {
+  string trace_id = 1;
+  string agent_id = 2;
+  string skill_name = 3;
+  bytes payload = 4; // JSON encoded
+  Context context = 5;
+}
+
+// 沙箱 -> 内核：响应
+message InvokeResponse {
+  bool success = 1;
+  bytes data = 2; // JSON encoded
+  string error_message = 3;
+  ExecutionMetrics metrics = 4;
+}
+
+// 内核 -> 沙箱：健康检查
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  bool healthy = 1;
+  string version = 2;
+  string status = 3;
+}
+
+// 沙箱注册请求
+message RegisterSandboxRequest {
+  string agent_id = 1;
+  string agent_name = 2;
+  repeated string skills = 3;
+  string version = 4;
+}
+
+message RegisterSandboxResponse {
+  bool success = 1;
+  string sandbox_id = 2;
+  string error_message = 3;
+}
+
+// 运行时服务定义
+service RuntimeService {
+  rpc Invoke(InvokeRequest) returns (InvokeResponse);
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+  rpc RegisterSandbox(RegisterSandboxRequest) returns (RegisterSandboxResponse);
+}

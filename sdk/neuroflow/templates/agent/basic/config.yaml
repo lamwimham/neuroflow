@@ -1,0 +1,17 @@
+# ${agent_name} - Basic Configuration
+
+agent:
+  name: ${agent_name}
+  description: "${description}"
+
+llm:
+  provider: ${llm_provider}
+  model: ${llm_model}
+
+# MCP 配置 (basic 模板不包含 MCP)
+# mcp:
+#   enabled: false
+
+# 日志配置
+logging:
+  level: "INFO"

@@ -1,0 +1,158 @@
+# ${agent_name} Agent - Advanced Configuration
+# 版本：v0.4.1
+
+agent:
+  name: ${agent_name}
+  description: "${description}"
+  workspace: "./${workspace_name}"
+
+llm:
+  provider: ${llm_provider}
+  model: ${llm_model}
+  temperature: 0.7
+  max_tokens: 4096
+
+# MCP 服务器配置
+mcp:
+  enabled: true
+  
+  servers:
+    # 文件系统 MCP
+    - name: filesystem
+      enabled: true
+      config:
+        allowed_paths:
+          - "./${workspace_name}"
+          - "./docs"
+          - "./data"
+        denied_paths:
+          - "/etc"
+          - "/usr"
+          - "/var"
+        allowed_operations:
+          - read
+          - write
+          - list
+          - delete  # advanced 模板允许删除
+        max_file_size_mb: 50
+    
+    # 记忆 MCP
+    - name: memory
+      enabled: true
+      config:
+        db_path: "./${workspace_name}/memory.db"
+        max_memories: 10000
+        auto_cleanup: true
+        enable_semantic_search: true
+    
+    # Terminal MCP (advanced 模板默认启用，但受限)
+    - name: terminal
+      enabled: true  # ✅ advanced 模板启用
+      config:
+        mode: restricted
+        allowed_commands:
+          - ls
+          - cat
+          - head
+          - tail
+          - grep
+          - find
+          - wc
+          - pwd
+          - python
+          - node
+        denied_commands:
+          - rm -rf
+          - curl
+          - wget
+          - sudo
+          - su
+        block_pipes: true
+        resource_limits:
+          timeout_seconds: 60
+          max_memory_mb: 1024
+          max_output_lines: 5000
+
+# 多 Agent 协作配置
+collaborators:
+  - name: data_analyst
+    description: "数据分析专家"
+    capabilities:
+      - data_analysis
+      - math
+    endpoint: "http://localhost:8081/agent/data_analyst"
+  
+  - name: code_reviewer
+    description: "代码审查专家"
+    capabilities:
+      - code_review
+      - security_audit
+    endpoint: "http://localhost:8082/agent/code_reviewer"
+
+# 安全配置
+security:
+  api_keys:
+    use_environment: true
+  
+  audit:
+    enabled: true
+    log_file: "./${workspace_name}/audit.log"
+    log_level: "DEBUG"  # advanced 模板使用 DEBUG 级别
+    log_operations:
+      - tool_call
+      - mcp_access
+      - file_access
+      - command_execution
+      - collaboration_request
+  
+  # 高级安全选项
+  advanced:
+    rate_limiting:
+      enabled: true
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    
+    input_validation:
+      enabled: true
+      max_input_length: 10000
+    
+    output_filtering:
+      enabled: true
+      filter_sensitive_data: true
+
+# 可观测性配置
+observability:
+  tracing:
+    enabled: true
+    export_endpoint: "http://localhost:4317"
+    sample_rate: 1.0
+  
+  metrics:
+    enabled: true
+    export_interval_seconds: 30
+    include_details: true
+
+# 日志配置
+logging:
+  level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./${workspace_name}/agent.log"
+  rotation:
+    max_size_mb: 100
+    backup_count: 5
+
+# 性能配置
+performance:
+  caching:
+    enabled: true
+    cache_size: 1000
+    ttl_seconds: 3600
+  
+  parallel_execution:
+    enabled: true
+    max_workers: 4
+  
+  batching:
+    enabled: true
+    max_batch_size: 10
+    batch_timeout_ms: 100

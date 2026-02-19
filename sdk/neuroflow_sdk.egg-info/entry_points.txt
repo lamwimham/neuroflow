@@ -1,0 +1,2 @@
+[console_scripts]
+neuroflow = neuroflow.cli.main:main

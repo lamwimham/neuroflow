@@ -1,0 +1,97 @@
+# 编译产物
+target/
+**/target/
+
+# Rust相关
+Cargo.lock
+**/Cargo.lock
+**/Cargo.toml.orig
+**/Cargo.toml.backup
+**/Cargo.lock~
+
+# IDE相关
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+.atom/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+.directory
+.Trashes
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+
+# 环境变量文件
+.env
+.env.local
+.env.dev
+.env.prod
+.env.testing
+.env.staging
+
+# 本地配置
+config/local.json
+config/production.json
+
+# 测试和构建产物
+**/test-results/
+**/reports/
+**/dist/
+**/build/
+**/out/
+**/output/
+
+# 日志文件
+*.log
+logs/
+**/logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 临时文件
+tmp/
+temp/
+**/tmp/
+**/temp/
+
+# Backup files
+*~
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+
+# Rust-specific
+**/*.rs.bk
+**/*.rej
+**/*.orig
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/__pycache__/
+**/*.so
+**/*.dylib
+**/*.dll
+**/*.dSYM/
+**/._*
+
+# 忽略大型二进制文件（如WASM文件，除非特别需要跟踪）
+# *.wasm
