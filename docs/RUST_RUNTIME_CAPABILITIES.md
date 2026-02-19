@@ -239,30 +239,53 @@ print(f"最终回复：{result.response}")
 
 ---
 
-## 🔌 4. MCP 集成
+## 🔌 4. MCP 集成（Model Call Protocol）
+
+**注意**: 当前 Rust 内核中的 MCP 模块是 **Model Call Protocol**（模型调用协议），
+不是 Model Context Protocol（MCP 服务器）。
+
+MCP 服务器管理在 **Python SDK** 中实现 (`sdk/neuroflow/mcp/`)。
 
 ### 实现位置
-- `kernel/src/mcp/mod.rs` - MCP 服务器管理
+- `kernel/src/mcp/mod.rs` - LLM 调用封装（Rust）
+- `sdk/neuroflow/mcp/` - MCP 服务器管理（Python）
 
-### 功能特性
+### Rust 内核功能（Model Call Protocol）
 
-- ✅ MCP 服务器连接管理
-- ✅ 工具发现和注册
-- ✅ 工具执行
+- ✅ LLM 调用封装
+- ✅ 模型信息管理
 - ✅ 健康检查
-- ✅ 连接池管理
+- ✅ 限流配置
 
-### Python SDK 使用
+### Python SDK 使用（Rust MCP）
+
+```python
+# 注意：Rust 内核的 MCP 模块当前只是模拟实现
+# 实际 LLM 调用通过 Python SDK 直接进行
+
+from neuroflow import AINativeAgent, LLMConfig
+
+agent = AINativeAgent(
+    name="assistant",
+    llm_config=LLMConfig(provider="openai", model="gpt-4"),
+)
+
+# LLM 调用
+response = await agent.llm.chat(
+    messages=[{"role": "user", "content": "Hello"}]
+)
+```
+
+### Python SDK 的 MCP 服务器管理
 
 ```python
 from neuroflow.mcp import (
     MCPServerManager,
     MCPConfigParser,
     RealMCPExecutor,
-    MCPHealthMonitor,
 )
 
-# ========== 方式 1: 使用服务器管理器 ==========
+# ========== MCP 服务器管理（Python SDK） ==========
 parser = MCPConfigParser()
 config = parser.parse_from_file("config.yaml")
 
@@ -274,15 +297,14 @@ statuses = manager.get_all_statuses()
 for name, status in statuses.items():
     print(f"{name}: {'✅' if status.connected else '❌'}")
 
-# 执行工具
+# 执行 MCP 工具
 result = await manager.execute_tool(
     server_name="filesystem",
     tool_name="read_file",
     arguments={"path": "/tmp/test.txt"},
 )
-print(f"文件内容：{result['result']}")
 
-# ========== 方式 2: 直接使用执行器 ==========
+# ========== 直接使用执行器 ==========
 executor = RealMCPExecutor()
 
 # 启动 MCP 服务器
@@ -299,21 +321,21 @@ result = await executor.execute_tool(
     tool_name="write_file",
     arguments={"path": "/tmp/test.txt", "content": "Hello"},
 )
-
-# 健康监控
-monitor = MCPHealthMonitor()
-await monitor.start_monitoring(executor)
-
-stats = monitor.get_statistics()
-print(f"健康服务器：{stats['healthy']}")
 ```
+
+### 功能对比
+
+| 功能 | Rust 内核 | Python SDK |
+|------|---------|----------|
+| **LLM 调用封装** | ✅ (模拟) | ✅ |
+| **MCP 服务器管理** | ❌ | ✅ |
+| **工具发现执行** | ❌ | ✅ |
+| **健康监控** | ✅ (简单) | ✅ |
 
 ### 适用场景
 
-- 连接外部工具服务器
-- 文件系统操作
-- 记忆存储
-- 网络搜索
+- **Rust MCP 模块**: 未来实现 LLM 路由和负载均衡
+- **Python MCP SDK**: 连接外部 MCP 工具服务器
 
 ---
 
