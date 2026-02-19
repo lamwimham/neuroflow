@@ -62,7 +62,7 @@ def cli(ctx, verbose):
 
     \b
     在线文档:
-        https://github.com/lamWimHam/neuroflow/docs
+        https://github.com/lamwimham/neuroflow/docs
 
     ═══════════════════════════════════════════════════════════
     """

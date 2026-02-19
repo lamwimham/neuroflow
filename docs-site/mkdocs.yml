@@ -3,8 +3,8 @@ site_description: AI Agent 运行时框架 - 让 AI Agent 开发更简单、更�
 site_url: https://neuroflow.ai
 site_author: NeuroFlow Team
 
-repo_name: lamWimHam/neuroflow
-repo_url: https://github.com/lamWimHam/neuroflow
+repo_name: lamwimham/neuroflow
+repo_url: https://github.com/lamwimham/neuroflow
 
 copyright: Copyright &copy; 2024 NeuroFlow Team
 
@@ -111,7 +111,7 @@ extra:
     property: G-XXXXXXXXXX
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/lamWimHam/neuroflow
+      link: https://github.com/lamwimham/neuroflow
     - icon: fontawesome/brands/discord
       link: https://discord.gg/neuroflow
     - icon: fontawesome/brands/twitter

@@ -44,7 +44,7 @@ gh repo create neuroflow --public --source=. --remote=origin --push
 #### 步骤 4: 关联远程仓库并推送
 ```bash
 # 添加远程仓库
-git remote add origin https://github.com/lamWimHam/neuroflow.git
+git remote add origin https://github.com/lamwimham/neuroflow.git
 
 # 推送代码
 git push -u origin main
@@ -135,7 +135,7 @@ gh release create v0.4.1 \
 ```markdown
 # NeuroFlow - AI Native Agent 运行时框架
 
-[![Version](https://img.shields.io/badge/version-v0.4.1-blue.svg)](https://github.com/lamWimHam/neuroflow/releases)
+[![Version](https://img.shields.io/badge/version-v0.4.1-blue.svg)](https://github.com/lamwimham/neuroflow/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
 [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org/)
@@ -285,7 +285,7 @@ jobs:
 
 现在你的项目已经在 GitHub 上了！
 
-**仓库 URL**: https://github.com/lamWimHam/neuroflow
+**仓库 URL**: https://github.com/lamwimham/neuroflow
 
 **下一步**:
 1. 分享项目

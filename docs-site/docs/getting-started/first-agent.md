@@ -514,7 +514,7 @@ async def convert_temperature(value: float, from_unit: str, to_unit: str) -> flo
 
 - 📖 [概念指南](../concepts/agents.md) - 深入理解 Agent
 - 💬 [Discord 社区](https://discord.gg/neuroflow)
-- 🐛 [GitHub Issues](https://github.com/lamWimHam/neuroflow/issues)
+- 🐛 [GitHub Issues](https://github.com/lamwimham/neuroflow/issues)
 
 ## 🎓 下一步
 

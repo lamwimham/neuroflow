@@ -690,5 +690,5 @@ async def type_safe_tool(
 
 **参考资源**:
 - [工具示例](../examples/basic.md#tools)
-- [SDK 源码](https://github.com/lamWimHam/neuroflow/tree/main/sdk)
+- [SDK 源码](https://github.com/lamwimham/neuroflow/tree/main/sdk)
 - [故障排除](../troubleshooting/faq.md)

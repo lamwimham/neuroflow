@@ -224,7 +224,7 @@ neuroflow --help
 如果以上方法都无法解决问题：
 
 1. **查看日志**: `pip install -v neuroflow` 查看详细日志
-2. **搜索 Issue**: [GitHub Issues](https://github.com/lamWimHam/neuroflow/issues)
+2. **搜索 Issue**: [GitHub Issues](https://github.com/lamwimham/neuroflow/issues)
 3. **提交 Issue**: 提供错误信息和环境信息
 
 ---

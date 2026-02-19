@@ -182,7 +182,7 @@ git log docs/plans/ITERATION_PLAN.md
 
 - **项目主页**: [README.md](../README.md)
 - **开发者文档**: [docs-site/docs/](../docs-site/docs/)
-- **代码仓库**: https://github.com/lamWimHam/neuroflow
+- **代码仓库**: https://github.com/lamwimham/neuroflow
 
 ---
 

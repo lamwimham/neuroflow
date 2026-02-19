@@ -47,7 +47,7 @@ neuroflow, version 0.3.0
 
 ```bash
 # 克隆仓库
-git clone https://github.com/lamWimHam/neuroflow.git
+git clone https://github.com/lamwimham/neuroflow.git
 cd neuroflow/sdk
 
 # 安装开发版本
@@ -412,7 +412,7 @@ pip install neuroflow
 
 - 📖 查看 [故障排除指南](../troubleshooting/faq.md)
 - 💬 加入 [Discord 社区](https://discord.gg/neuroflow)
-- 🐛 提交 [GitHub Issue](https://github.com/lamWimHam/neuroflow/issues)
+- 🐛 提交 [GitHub Issue](https://github.com/lamwimham/neuroflow/issues)
 - 📧 发送邮件至 support@neuroflow.ai (即将上线)
 
 ## 📝 参考资源
@@ -420,7 +420,7 @@ pip install neuroflow
 - [Python 官方文档](https://docs.python.org/3/)
 - [pip 用户指南](https://pip.pypa.io/en/stable/)
 - [虚拟环境指南](https://docs.python.org/3/library/venv.html)
-- [NeuroFlow GitHub](https://github.com/lamWimHam/neuroflow)
+- [NeuroFlow GitHub](https://github.com/lamwimham/neuroflow)
 
 ---
 

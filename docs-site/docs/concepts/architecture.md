@@ -455,6 +455,6 @@ impl Sandbox for CustomSandbox {
 ---
 
 **参考资源**:
-- [NeuroFlow GitHub](https://github.com/lamWimHam/neuroflow)
-- [Rust 内核源码](https://github.com/lamWimHam/neuroflow/tree/main/kernel)
-- [Python SDK 源码](https://github.com/lamWimHam/neuroflow/tree/main/sdk)
+- [NeuroFlow GitHub](https://github.com/lamwimham/neuroflow)
+- [Rust 内核源码](https://github.com/lamwimham/neuroflow/tree/main/kernel)
+- [Python SDK 源码](https://github.com/lamwimham/neuroflow/tree/main/sdk)

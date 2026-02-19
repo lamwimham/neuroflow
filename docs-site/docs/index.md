@@ -2,7 +2,7 @@
 
 > ⚠️ **当前状态**: Early Alpha (v0.3.0) - 开发者体验改进中
 
-[![CI](https://github.com/lamWimHam/neuroflow/actions/workflows/ci.yml/badge.svg)](https://github.com/lamWimHam/neuroflow/actions/workflows/ci.yml)
+[![CI](https://github.com/lamwimham/neuroflow/actions/workflows/ci.yml/badge.svg)](https://github.com/lamwimham/neuroflow/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Discord](https://img.shields.io/discord/1234567890)](https://discord.gg/neuroflow)
 
@@ -215,14 +215,14 @@ pytest
 
 ## 📞 社区
 
-- **GitHub**: [lamWimHam/neuroflow](https://github.com/lamWimHam/neuroflow)
+- **GitHub**: [lamwimham/neuroflow](https://github.com/lamwimham/neuroflow)
 - **Discord**: [加入社区](https://discord.gg/neuroflow) (即将上线)
 - **Twitter**: [@neuroflow_ai](https://twitter.com/neuroflow_ai) (即将上线)
-- **Issue 反馈**: [提交问题](https://github.com/lamWimHam/neuroflow/issues)
+- **Issue 反馈**: [提交问题](https://github.com/lamwimham/neuroflow/issues)
 
 ## 📄 许可证
 
-MIT License - 查看 [LICENSE](https://github.com/lamWimHam/neuroflow/blob/main/LICENSE) 文件
+MIT License - 查看 [LICENSE](https://github.com/lamwimham/neuroflow/blob/main/LICENSE) 文件
 
 ## 🙏 致谢
 

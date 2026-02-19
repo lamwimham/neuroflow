@@ -90,9 +90,9 @@
 
 ### 官方资源
 
-- [GitHub 仓库](https://github.com/lamWimHam/neuroflow)
-- [问题反馈](https://github.com/lamWimHam/neuroflow/issues)
-- [讨论区](https://github.com/lamWimHam/neuroflow/discussions)
+- [GitHub 仓库](https://github.com/lamwimham/neuroflow)
+- [问题反馈](https://github.com/lamwimham/neuroflow/issues)
+- [讨论区](https://github.com/lamwimham/neuroflow/discussions)
 
 ### 社区资源
 
