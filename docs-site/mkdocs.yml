@@ -134,6 +134,7 @@ nav:
     - Architecture: concepts/architecture.md
     - Agents: concepts/agents.md
     - Tools: concepts/tools.md
+    - Skills: concepts/skills.md
     - Sandbox: concepts/sandbox.md
     - Configuration: concepts/configuration.md
   - Guides:
