@@ -1,0 +1,242 @@
+syntax = "proto3";
+
+package neuroflow.memory.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+// ========== 数据结构 ==========
+
+// 记忆条目
+message MemoryEntry {
+  string id = 1;
+  string agent_id = 2;
+  string key = 3;
+  google.protobuf.Value value = 4;
+  google.protobuf.Timestamp timestamp = 5;
+  google.protobuf.Timestamp expiry = 6;
+  repeated string tags = 7;
+  float importance = 8;
+  string memory_type = 9;  // "short_term", "long_term", "semantic", "episodic"
+}
+
+// 记忆查询
+message MemoryQuery {
+  string agent_id = 1;
+  string key_pattern = 2;
+  repeated string tags = 3;
+  float min_importance = 4;
+  int32 limit = 5;
+  MemorySortBy sort_by = 6;
+  repeated string memory_types = 7;
+}
+
+enum MemorySortBy {
+  SORT_UNSPECIFIED = 0;
+  TIMESTAMP_ASC = 1;
+  TIMESTAMP_DESC = 2;
+  IMPORTANCE_ASC = 3;
+  IMPORTANCE_DESC = 4;
+}
+
+// 语义搜索查询
+message SemanticSearchQuery {
+  string agent_id = 1;
+  string query_text = 2;
+  int32 top_k = 3;
+  float min_similarity = 4;
+}
+
+// ========== 服务定义 ==========
+
+service MemoryService {
+  // 存储记忆
+  rpc Store(StoreRequest) returns (StoreResponse);
+  
+  // 批量存储
+  rpc StoreBatch(StoreBatchRequest) returns (StoreBatchResponse);
+  
+  // 检索记忆
+  rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
+  
+  // 删除记忆
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  
+  // 搜索记忆
+  rpc Search(SearchRequest) returns (SearchResponse);
+  
+  // 语义搜索
+  rpc SemanticSearch(SemanticSearchRequest) returns (SemanticSearchResponse);
+  
+  // 更新记忆重要性
+  rpc UpdateImportance(UpdateImportanceRequest) returns (UpdateImportanceResponse);
+  
+  // 清理过期记忆
+  rpc CleanupExpired(CleanupExpiredRequest) returns (CleanupExpiredResponse);
+}
+
+// ========== 请求/响应消息 ==========
+
+message StoreRequest {
+  MemoryEntry entry = 1;
+}
+
+message StoreResponse {
+  bool success = 1;
+  string memory_id = 2;
+  string error = 3;
+}
+
+message StoreBatchRequest {
+  repeated MemoryEntry entries = 1;
+}
+
+message StoreBatchResponse {
+  bool success = 1;
+  repeated string memory_ids = 2;
+  repeated string errors = 3;
+}
+
+message RetrieveRequest {
+  string agent_id = 1;
+  string key = 2;
+}
+
+message RetrieveResponse {
+  MemoryEntry entry = 1;
+  bool found = 2;
+  string error = 3;
+}
+
+message DeleteRequest {
+  string agent_id = 1;
+  string key = 2;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message SearchRequest {
+  MemoryQuery query = 1;
+}
+
+message SearchResponse {
+  repeated MemoryEntry entries = 1;
+  int32 total_count = 2;
+}
+
+message SemanticSearchRequest {
+  SemanticSearchQuery query = 1;
+}
+
+message SemanticSearchResponse {
+  repeated MemoryEntryWithScore results = 1;
+}
+
+message MemoryEntryWithScore {
+  MemoryEntry entry = 1;
+  float similarity_score = 2;
+}
+
+message UpdateImportanceRequest {
+  string agent_id = 1;
+  string memory_id = 2;
+  float new_importance = 3;
+}
+
+message UpdateImportanceResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message CleanupExpiredRequest {
+  string agent_id = 1;
+}
+
+message CleanupExpiredResponse {
+  int32 cleaned_count = 1;
+}
+
+// ========== 对话记忆专用消息 ==========
+
+// 对话轮次
+message ConversationTurn {
+  string role = 1;  // "user" or "assistant"
+  string content = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  map<string, string> metadata = 4;
+}
+
+// 保存对话请求
+message SaveConversationRequest {
+  string agent_id = 1;
+  string conversation_id = 2;
+  repeated ConversationTurn turns = 3;
+  map<string, string> context = 4;
+}
+
+message SaveConversationResponse {
+  bool success = 1;
+  int32 turns_saved = 2;
+  string error = 3;
+}
+
+// 提取知识请求（Agent 学习到的知识）
+message ExtractKnowledgeRequest {
+  string agent_id = 1;
+  string conversation_id = 2;
+  string conversation_text = 3;  // 完整的对话文本
+  map<string, string> context = 4;
+}
+
+message ExtractedKnowledge {
+  string key = 1;           // 知识键（自动生成）
+  string value = 2;         // 知识内容（JSON）
+  string category = 3;      // 知识类别
+  float confidence = 4;     // 置信度 (0-1)
+  repeated string tags = 5; // 标签
+}
+
+message ExtractKnowledgeResponse {
+  repeated ExtractedKnowledge knowledge_items = 1;
+  string error = 2;
+}
+
+// 对话记忆服务
+service ConversationMemoryService {
+  // 保存对话
+  rpc SaveConversation(SaveConversationRequest) returns (SaveConversationResponse);
+  
+  // 获取对话历史
+  rpc GetConversationHistory(GetConversationHistoryRequest) returns (GetConversationHistoryResponse);
+  
+  // 从对话中提取知识
+  rpc ExtractKnowledge(ExtractKnowledgeRequest) returns (ExtractKnowledgeResponse);
+  
+  // 保存提取的知识
+  rpc SaveExtractedKnowledge(SaveExtractedKnowledgeRequest) returns (SaveExtractedKnowledgeResponse);
+}
+
+message GetConversationHistoryRequest {
+  string agent_id = 1;
+  string conversation_id = 2;
+  int32 limit = 3;
+}
+
+message GetConversationHistoryResponse {
+  repeated ConversationTurn turns = 1;
+  string conversation_id = 2;
+}
+
+message SaveExtractedKnowledgeRequest {
+  string agent_id = 1;
+  repeated ExtractedKnowledge knowledge_items = 2;
+}
+
+message SaveExtractedKnowledgeResponse {
+  bool success = 1;
+  repeated string memory_ids = 2;
+  string error = 3;
+}
