@@ -36,7 +36,11 @@ def agent_cmd():
 )
 @click.option(
     "--llm-provider",
-    type=click.Choice(["openai", "anthropic", "ollama"]),
+    type=click.Choice([
+        "openai", "anthropic", "ollama",  # 国际厂商
+        "deepseek", "zhipu", "baichuan",  # 国产大模型
+        "qwen", "moonshot", "minimax",    # 国产大模型
+    ]),
     default="openai",
     help="LLM 提供商 (默认：openai)",
 )
@@ -80,15 +84,30 @@ def create(ctx, agent_name, description, template, llm_provider, model, output_d
     
     \b
     LLM 提供商:
-        openai     - OpenAI (GPT-3.5, GPT-4)
-        anthropic  - Anthropic (Claude)
-        ollama     - Ollama (本地模型)
-    
+        国际厂商:
+            openai     - OpenAI (GPT-3.5, GPT-4, GPT-4o)
+            anthropic  - Anthropic (Claude 2, Claude 3)
+            ollama     - Ollama (本地模型)
+        
+        国产大模型:
+            deepseek   - 深度求索 (DeepSeek)
+            zhipu      - 智谱 AI (GLM-4)
+            baichuan   - 百川智能 (Baichuan)
+            qwen       - 阿里云 (通义千问)
+            moonshot   - 月之暗面 (Kimi)
+            minimax    - MiniMax (ABAB)
+
     \b
     默认模型:
         openai     - gpt-3.5-turbo
         anthropic  - claude-3-sonnet-20240229
         ollama     - llama2
+        deepseek   - deepseek-chat
+        zhipu      - glm-4
+        baichuan   - Baichuan4
+        qwen       - qwen-max
+        moonshot   - moonshot-v1-8k
+        minimax    - abab6.5s
 
     \b
     创建的 Agent 目录:
@@ -134,9 +153,17 @@ def create(ctx, agent_name, description, template, llm_provider, model, output_d
     # 选择默认模型
     if not model:
         models = {
+            # 国际厂商
             "openai": "gpt-3.5-turbo",
             "anthropic": "claude-3-sonnet-20240229",
             "ollama": "llama2",
+            # 国产大模型
+            "deepseek": "deepseek-chat",
+            "zhipu": "glm-4",
+            "baichuan": "Baichuan4",
+            "qwen": "qwen-max",
+            "moonshot": "moonshot-v1-8k",
+            "minimax": "abab6.5s",
         }
         model = models.get(llm_provider, "gpt-3.5-turbo")
 

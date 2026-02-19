@@ -20,6 +20,13 @@ class LLMProvider(Enum):
     ANTHROPIC = "anthropic"
     OLLAMA = "ollama"
     CUSTOM = "custom"
+    # 国产大模型
+    DEEPSEEK = "deepseek"
+    ZHIPU = "zhipu"
+    BAICHUAN = "baichuan"
+    QWEN = "qwen"
+    MOONSHOT = "moonshot"
+    MINIMAX = "minimax"
 
 
 @dataclass
@@ -40,6 +47,30 @@ class LLMConfig:
                 self.api_key = os.getenv("OPENAI_API_KEY")
             elif self.provider == LLMProvider.ANTHROPIC:
                 self.api_key = os.getenv("ANTHROPIC_API_KEY")
+            elif self.provider == LLMProvider.DEEPSEEK:
+                self.api_key = os.getenv("DEEPSEEK_API_KEY")
+                if not self.model:
+                    self.model = "deepseek-chat"
+            elif self.provider == LLMProvider.ZHIPU:
+                self.api_key = os.getenv("ZHIPU_API_KEY")
+                if not self.model:
+                    self.model = "glm-4"
+            elif self.provider == LLMProvider.BAICHUAN:
+                self.api_key = os.getenv("BAICHUAN_API_KEY")
+                if not self.model:
+                    self.model = "Baichuan4"
+            elif self.provider == LLMProvider.QWEN:
+                self.api_key = os.getenv("DASHSCOPE_API_KEY")
+                if not self.model:
+                    self.model = "qwen-max"
+            elif self.provider == LLMProvider.MOONSHOT:
+                self.api_key = os.getenv("MOONSHOT_API_KEY")
+                if not self.model:
+                    self.model = "moonshot-v1-8k"
+            elif self.provider == LLMProvider.MINIMAX:
+                self.api_key = os.getenv("MINIMAX_API_KEY")
+                if not self.model:
+                    self.model = "abab6.5s"
 
 
 @dataclass

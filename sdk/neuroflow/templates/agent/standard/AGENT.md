@@ -17,10 +17,19 @@ pip install -r requirements.txt
 ### 2. 配置环境变量
 
 ```bash
-# 设置 LLM API Key
-export OPENAI_API_KEY="your-api-key"
-# 或者使用 Anthropic
-# export ANTHROPIC_API_KEY="your-api-key"
+# 设置 LLM API Key (根据使用的厂商选择)
+
+# 国际厂商
+export OPENAI_API_KEY="your-api-key"      # OpenAI
+export ANTHROPIC_API_KEY="your-api-key"   # Anthropic
+
+# 国产大模型
+export DEEPSEEK_API_KEY="your-api-key"    # 深度求索 (DeepSeek)
+export ZHIPU_API_KEY="your-api-key"       # 智谱 AI (GLM)
+export BAICHUAN_API_KEY="your-api-key"    # 百川智能
+export DASHSCOPE_API_KEY="your-api-key"   # 阿里云 (通义千问)
+export MOONSHOT_API_KEY="your-api-key"    # 月之暗面 (Kimi)
+export MINIMAX_API_KEY="your-api-key"     # MiniMax
 ```
 
 ### 3. 运行 Agent
