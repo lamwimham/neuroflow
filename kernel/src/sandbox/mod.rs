@@ -3,9 +3,11 @@
 
 pub mod python;      // Python 进程沙箱
 pub mod namespace;   // Linux namespace 隔离
+pub mod wasm;        // WASM 沙箱
 
 pub use python::{SandboxConfig as PythonSandboxConfig, SandboxHandle, SandboxManager};
-pub use namespace::{NamespaceIsolator, SandboxConfig, SandboxResult, SandboxError};
+pub use namespace::{NamespaceIsolator, SandboxConfig as NamespaceSandboxConfig, SandboxResult, SandboxError as NamespaceSandboxError};
+pub use wasm::{WasmSandbox, WasmSandboxConfig, WasmSandboxManager, WasmModule, WasmExecutionResult, WasmSandboxError};
 
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
@@ -18,7 +20,7 @@ pub enum SandboxType {
     Python,
     /// Linux namespace 隔离沙箱
     Namespace,
-    /// WASM 沙箱 (保留用于未来实现)
+    /// WASM 沙箱
     Wasm,
 }
 
@@ -48,6 +50,7 @@ impl Default for UnifiedSandboxConfig {
 pub enum SandboxExecutor {
     Python(SandboxManager),
     Namespace(NamespaceIsolator),
+    Wasm(WasmSandbox),
 }
 
 impl SandboxExecutor {
@@ -55,21 +58,33 @@ impl SandboxExecutor {
         Self::Python(SandboxManager::new())
     }
     
-    pub fn new_namespace(config: SandboxConfig) -> Self {
+    pub fn new_namespace(config: NamespaceSandboxConfig) -> Self {
         Self::Namespace(NamespaceIsolator::new(config))
     }
     
-    pub async fn execute(&self, command: &str, args: &[&str]) -> Result<SandboxResult> {
+    pub fn new_wasm(config: WasmSandboxConfig) -> Result<Self, anyhow::Error> {
+        let sandbox = WasmSandbox::new(config)
+            .map_err(|e| anyhow::anyhow!("WASM sandbox creation failed: {}", e))?;
+        Ok(Self::Wasm(sandbox))
+    }
+    
+    pub fn execute_wasm(&mut self, module: &WasmModule, input: &[u8]) -> Result<WasmExecutionResult, anyhow::Error> {
         match self {
-            Self::Python(_) => {
-                // Python 沙箱执行（简化版本）
-                Err(anyhow::anyhow!("Python sandbox not fully implemented"))
+            Self::Wasm(sandbox) => {
+                sandbox.execute(module, input)
+                    .map_err(|e| anyhow::anyhow!("WASM execution failed: {}", e))
             }
+            _ => Err(anyhow::anyhow!("Wrong sandbox type for WASM execution")),
+        }
+    }
+    
+    pub fn execute_namespace(&mut self, command: &str, args: &[&str]) -> Result<namespace::SandboxResult, anyhow::Error> {
+        match self {
             Self::Namespace(isolator) => {
-                // Namespace 隔离执行
                 isolator.execute(command, args)
                     .map_err(|e| anyhow::anyhow!("Namespace execution failed: {}", e))
             }
+            _ => Err(anyhow::anyhow!("Wrong sandbox type for namespace execution")),
         }
     }
 }

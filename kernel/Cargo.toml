@@ -39,6 +39,10 @@ libc = "0.2"  # For resource limits
 futures = "0.3"
 nix = { version = "0.27", features = ["sched", "mount", "user"] }
 # caps = "0.5"  # Temporarily disabled due to compilation issues
+# WASM runtime support
+wasmtime = "15"
+wasmer = "4"
+wasmer-compiler-singlepass = "4"
 # Additional dependencies for Phase 2
 notify = "6.1"
 ndarray = "0.15"
