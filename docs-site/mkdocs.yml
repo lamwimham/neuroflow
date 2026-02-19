@@ -145,6 +145,7 @@ nav:
     - Debugging: guides/debugging.md
     - Testing: guides/testing.md
     - Deployment: guides/deployment.md
+    - Sandbox Usage: guides/sandbox-usage.md  # 新增
     - Release Notes:
       - v0.5.0: guides/release-notes/v0.5.0.md
       - v0.4.2: guides/release-notes/v0.4.2.md
