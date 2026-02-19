@@ -327,7 +327,7 @@ neuroflow --version
 如果以上方法都无法解决问题：
 
 1. **查看日志**: 使用 `--verbose` 查看详细错误信息
-2. **搜索 Issue**: [GitHub Issues](https://github.com/neuroflow/neuroflow/issues)
+2. **搜索 Issue**: [GitHub Issues](https://github.com/lamWimHam/neuroflow/issues)
 3. **提交 Issue**: 提供错误信息、环境信息、复现步骤
 
 ---

@@ -59,7 +59,7 @@ NeuroFlow CLI - AI Native Agent 开发工具
     neuroflow skill validate   验证 Skill 格式
 
 在线文档:
-    https://github.com/neuroflow/neuroflow/docs
+    https://github.com/lamWimHam/neuroflow/docs
 
 ═══════════════════════════════════════════════════════════
 ```

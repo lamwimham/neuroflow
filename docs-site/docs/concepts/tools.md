@@ -663,6 +663,6 @@ async def test_add_negative():
 ---
 
 **参考资源**:
-- [NeuroFlow SDK 源码](https://github.com/neuroflow/neuroflow/tree/main/sdk)
+- [NeuroFlow SDK 源码](https://github.com/lamWimHam/neuroflow/tree/main/sdk)
 - [示例工具](../examples/basic.md#tools)
 - [故障排除](../troubleshooting/faq.md)

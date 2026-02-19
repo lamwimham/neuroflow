@@ -177,7 +177,7 @@ _______
 ---
 
 **提交方式**:
-- GitHub Issue: https://github.com/neuroflow/neuroflow/issues/new?label=feedback
+- GitHub Issue: https://github.com/lamWimHam/neuroflow/issues/new?label=feedback
 - 邮件：feedback@neuroflow.ai (未来)
 - Discord: NeuroFlow Community (未来)
 

@@ -34,7 +34,7 @@ pip install --upgrade pip
 
 3. **使用源码安装**
 ```bash
-git clone https://github.com/neuroflow/neuroflow.git
+git clone https://github.com/lamWimHam/neuroflow.git
 cd neuroflow/sdk
 pip install -e .
 ```
@@ -477,12 +477,12 @@ tail -f neuroflow.log
 
 2. **搜索 Issue**
 ```
-https://github.com/neuroflow/neuroflow/issues
+https://github.com/lamWimHam/neuroflow/issues
 ```
 
 3. **提交 Issue**
 ```
-https://github.com/neuroflow/neuroflow/issues/new
+https://github.com/lamWimHam/neuroflow/issues/new
 ```
 
 提供以下信息:
@@ -494,7 +494,7 @@ https://github.com/neuroflow/neuroflow/issues/new
 
 4. **加入社区**
 - Discord: https://discord.gg/neuroflow
-- GitHub Discussions: https://github.com/neuroflow/neuroflow/discussions
+- GitHub Discussions: https://github.com/lamWimHam/neuroflow/discussions
 
 ---
 

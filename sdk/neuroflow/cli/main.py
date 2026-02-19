@@ -59,11 +59,11 @@ def cli(ctx, verbose):
         neuroflow agent list       列出所有 Agent
         neuroflow skill list       列出所有 Skills
         neuroflow skill validate   验证 Skill 格式
-    
+
     \b
     在线文档:
-        https://github.com/neuroflow/neuroflow/docs
-    
+        https://github.com/lamWimHam/neuroflow/docs
+
     ═══════════════════════════════════════════════════════════
     """
     ctx.ensure_object(dict)

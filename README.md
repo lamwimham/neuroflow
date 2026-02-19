@@ -2,7 +2,7 @@
 
 > 🎉 **新版本**: v0.4.0 - Phase 1-4 全部完成
 
-[![CI](https://github.com/neuroflow/neuroflow/actions/workflows/ci.yml/badge.svg)](https://github.com/neuroflow/neuroflow/actions/workflows/ci.yml)
+[![CI](https://github.com/lamWimHam/neuroflow/actions/workflows/ci.yml/badge.svg)](https://github.com/lamWimHam/neuroflow/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/pypi/v/neuroflow-sdk.svg)](https://pypi.org/project/neuroflow-sdk/)
 
@@ -245,9 +245,9 @@ MIT License - 查看 [LICENSE](LICENSE) 文件
 
 ## 📞 联系方式
 
-- 项目主页：https://github.com/neuroflow/neuroflow
-- 问题反馈：https://github.com/neuroflow/neuroflow/issues
-- 讨论区：https://github.com/neuroflow/neuroflow/discussions
+- 项目主页：https://github.com/lamWimHam/neuroflow
+- 问题反馈：https://github.com/lamWimHam/neuroflow/issues
+- 讨论区：https://github.com/lamWimHam/neuroflow/discussions
 
 ---
 

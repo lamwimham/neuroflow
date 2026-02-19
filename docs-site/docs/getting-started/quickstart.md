@@ -351,8 +351,8 @@ custom_greeting_agent    创意问候 Agent
 ### 参与社区
 
 - 💬 [加入 Discord 社区](https://discord.gg/neuroflow)
-- 🐛 [报告问题](https://github.com/neuroflow/neuroflow/issues)
-- ⭐ [给项目加星](https://github.com/neuroflow/neuroflow)
+- 🐛 [报告问题](https://github.com/lamWimHam/neuroflow/issues)
+- ⭐ [给项目加星](https://github.com/lamWimHam/neuroflow)
 
 ## ❓ 常见问题
 
@@ -401,7 +401,7 @@ neuroflow run --reload  # 热重载模式 (开发中)
 
 - 📖 [完整文档](../index.md)
 - 💬 [Discord 社区](https://discord.gg/neuroflow)
-- 🐛 [GitHub Issues](https://github.com/neuroflow/neuroflow/issues)
+- 🐛 [GitHub Issues](https://github.com/lamWimHam/neuroflow/issues)
 
 ---
 
