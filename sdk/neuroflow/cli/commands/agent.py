@@ -7,6 +7,7 @@ NeuroFlow CLI - Agent Commands
 import click
 from pathlib import Path
 import asyncio
+from neuroflow.templates.template_renderer import TemplateRenderer
 
 
 @click.group("agent", help="Agent 管理命令")
@@ -88,42 +89,48 @@ def create(ctx, agent_name, description, template, llm_provider, model, output_d
         openai     - gpt-3.5-turbo
         anthropic  - claude-3-sonnet-20240229
         ollama     - llama2
-    
+
     \b
-    创建的 Agent 文件:
+    创建的 Agent 目录:
         agents/
-        └── <agent_name>.py    # Agent 定义文件
-    
+        └── <agent_name>/
+            ├── <agent_name>.py    # Agent 主文件
+            ├── AGENT.md           # Agent 文档
+            ├── config.yaml        # 配置文件
+            ├── requirements.txt   # 依赖列表
+            ├── scripts/           # 脚本目录
+            └── workspace/         # 工作空间
+
     ═══════════════════════════════════════════════════════════
     """
     agents_dir = Path(output_dir)
-    agent_file = agents_dir / f"{agent_name}.py"
-    
+    agent_dir = agents_dir / agent_name
+
     # 检查是否已存在
-    if agent_file.exists():
+    if agent_dir.exists():
         if not force:
             click.echo(click.style(
-                f"❌ Agent '{agent_name}' 已存在", 
+                f"❌ Agent '{agent_name}' 已存在",
                 fg="red"
             ))
             click.echo(click.style(
-                f"   文件：{agent_file}", 
+                f"   目录：{agent_dir}",
                 fg="yellow"
             ))
             click.echo(click.style(
-                "   使用 --force 选项覆盖", 
+                "   使用 --force 选项覆盖",
                 fg="yellow"
             ))
             return
         else:
             click.echo(click.style(
-                f"⚠️  覆盖已存在的 Agent: {agent_name}", 
+                f"⚠️  覆盖已存在的 Agent: {agent_name}",
                 fg="yellow"
             ))
-    
+
     # 创建 agents 目录
     agents_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # 选择默认模型
     if not model:
         models = {
@@ -132,18 +139,42 @@ def create(ctx, agent_name, description, template, llm_provider, model, output_d
             "ollama": "llama2",
         }
         model = models.get(llm_provider, "gpt-3.5-turbo")
-    
-    # 创建 Agent 文件
-    content = _generate_agent_code(agent_name, description, llm_provider, model)
-    agent_file.write_text(content)
-    
+
+    # 使用模板系统创建 Agent 目录结构
+    try:
+        renderer = TemplateRenderer(template_name=template)
+        renderer.render(
+            output_dir=agent_dir,
+            variables={
+                "agent_name": agent_name,
+                "agent_class_name": agent_name.replace("-", "_").title().replace("_", ""),
+                "description": description,
+                "llm_provider": llm_provider,
+                "llm_model": model,
+            },
+            overwrite=force,
+        )
+    except Exception as e:
+        click.echo(click.style(f"❌ 创建 Agent 失败：{e}", fg="red"))
+        return
+
     # 显示完成信息
     click.echo(click.style(f"\n✅ Agent '{agent_name}' 创建成功!", fg="green"))
-    click.echo(f"\n📁 位置：{agent_file}")
+    click.echo(f"\n📁 位置：{agent_dir}")
+    click.echo(f"\n📂 目录结构:")
+    click.echo(f"   {agent_name}/")
+    click.echo(f"   ├── {agent_name}.py      # Agent 主文件")
+    click.echo(f"   ├── AGENT.md            # Agent 文档")
+    click.echo(f"   ├── config.yaml         # 配置文件")
+    click.echo(f"   ├── requirements.txt    # 依赖列表")
+    click.echo(f"   ├── scripts/            # 脚本目录")
+    click.echo(f"   └── workspace/          # 工作空间")
     click.echo(f"\n📝 下一步:")
-    click.echo(f"   1. 编辑 {agent_file} 添加自定义工具")
-    click.echo(f"   2. 设置环境变量：export {llm_provider.upper()}_API_KEY=your-key")
-    click.echo(f"   3. 运行 Agent: neuroflow agent run {agent_name} \"你好\"\n")
+    click.echo(f"   1. cd {agent_dir}")
+    click.echo(f"   2. 编辑 {agent_name}.py 添加自定义工具")
+    click.echo(f"   3. pip install -r requirements.txt")
+    click.echo(f"   4. 设置环境变量：export {llm_provider.upper()}_API_KEY=your-key")
+    click.echo(f"   5. python {agent_name}.py\n")
 
 
 def _generate_agent_code(name: str, description: str, provider: str, model: str) -> str:

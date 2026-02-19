@@ -1,7 +1,7 @@
 """
-${agent_name} Agent
+trader Agent
 
-${description}
+一个专注于加密货币市场的交易员
 
 此 Agent 使用 MCP 服务器提供文件系统和记忆功能。
 Terminal 功能默认禁用以确保安全。
@@ -12,9 +12,9 @@ from pathlib import Path
 from neuroflow import AINativeAgent, AINativeAgentConfig, LLMConfig
 
 
-class ${agent_class_name}Agent(AINativeAgent):
+class TraderAgent(AINativeAgent):
     """
-    ${description}
+    一个专注于加密货币市场的交易员
     """
 
     def __init__(self, config_path: str = "config.yaml"):
@@ -23,11 +23,11 @@ class ${agent_class_name}Agent(AINativeAgent):
 
         super().__init__(
             AINativeAgentConfig(
-                name="${agent_name}",
-                description="${description}",
+                name="trader",
+                description="一个专注于加密货币市场的交易员",
                 llm_config=LLMConfig(
-                    provider="${llm_provider}",
-                    model="${llm_model}",
+                    provider="openai",
+                    model="deepseek",
                 ),
             )
         )
@@ -54,7 +54,7 @@ class ${agent_class_name}Agent(AINativeAgent):
         @self.tool(name="greet", description="问候用户")
         async def greet(name: str) -> str:
             """问候用户"""
-            return f"你好，{name}! 我是${agent_name}，很高兴为你服务。"
+            return f"你好，{name}! 我是trader，很高兴为你服务。"
         
         # TODO: 添加更多领域特定工具
         # 示例：
